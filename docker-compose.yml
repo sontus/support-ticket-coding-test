@@ -1,0 +1,24 @@
+services:
+
+  laravel-docker:
+    container_name: support_ticket
+    build: .
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - 9025:80
+
+  mysql_db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_support_ticket
+    ports:
+    - 3335:3306
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - 9925:80
+    environment:
+      - PMA_ARBITRARY=1
